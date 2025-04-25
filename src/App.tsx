@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import type { Transaction } from './types';
 import TransactionForm from './components/TransactionForm/TransactionForm';
 import TransactionList from './components/TransactionList/TransactionList';
+import Balance from './components/Balance/Balance';
 
 function App() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -28,6 +29,7 @@ function App() {
     <div className="App">
       <h1>Financial Tracker</h1>
 
+      <Balance transactions={transactions} />
       <TransactionForm onAdd={addTransaction} />
       <TransactionList transactions={transactions} />
       
