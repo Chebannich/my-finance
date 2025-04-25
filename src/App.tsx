@@ -18,6 +18,10 @@ function App() {
   const addTransaction = (newTransaction: Transaction) => {
     setTransactions(prev => [newTransaction, ...prev]);
   };
+
+  const deleteTransaction = (id: string) => {
+    setTransactions(prev => prev.filter(t => t.id !== id));
+  }
   
 
   return (
@@ -26,7 +30,7 @@ function App() {
 
       <Balance transactions={transactions} />
       <TransactionForm onAdd={addTransaction} />
-      <TransactionList transactions={transactions} />
+      <TransactionList transactions={transactions} onDelete={deleteTransaction}/>
       
     </div>
   );
