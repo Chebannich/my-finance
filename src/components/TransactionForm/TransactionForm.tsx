@@ -59,14 +59,13 @@ const TransactionForm = ({ onAdd }: Props) => {
         type="text"
         placeholder="Category"
         value={category}
-        onChange={e => setAmout(e.target.value)}
+        onChange={e => setCategory(e.target.value)}
       />
 
       <input
-        type="number"
-        placeholder="Date"
+        type="date"
         value={date}
-        onChange={e => setAmout(e.target.value)}
+        onChange={e => setDate(e.target.value)}
       />
 
       <button type="submit">Submit Transaction</button>
