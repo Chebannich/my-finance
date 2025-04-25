@@ -5,20 +5,15 @@ import TransactionList from './components/TransactionList/TransactionList';
 import Balance from './components/Balance/Balance';
 
 function App() {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]> (() => {
+    const saved = localStorage.getItem('transactions');
+    return saved ? JSON.parse(saved) : [];
+  });
 
   useEffect(() => {
-    const example: Transaction = {
-      id: crypto.randomUUID(),
-      type: 'expense',
-      description: 'Test transaction',
-      amount: 10,
-      category: 'Other',
-      date: new Date().toISOString(),
-    };
-
-    setTransactions([example]);
-  }, []);
+    console.log('Saving to localStorage:', transactions);
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+  }, [transactions]);
 
   const addTransaction = (newTransaction: Transaction) => {
     setTransactions(prev => [newTransaction, ...prev]);
