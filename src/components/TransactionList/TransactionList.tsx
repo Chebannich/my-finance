@@ -3,9 +3,10 @@ import type { Transaction } from "../../types";
 interface Props {
   transactions: Transaction[];
   onDelete: (id: string) => void;
+  onEdit: (transaction: Transaction) => void;
 }
 
-const TransactionList = ( { transactions, onDelete}: Props) => {
+const TransactionList = ( { transactions, onDelete, onEdit}: Props) => {
   if (transactions.length === 0) {
     return <p>No transactions yet.</p>;
   }
@@ -18,7 +19,7 @@ const TransactionList = ( { transactions, onDelete}: Props) => {
     <ul>
       {sortedTransactions.map(tx => (
           <li key={tx.id}>
-            [{new Date(tx.date).toLocaleDateString()}] {tx.description} - {tx.amount} € ({tx.category}, {tx.type}) <button onClick={() => onDelete(tx.id)}>Delete</button>
+            [{new Date(tx.date).toLocaleDateString()}] {tx.description} - {tx.amount} € ({tx.category}, {tx.type}) <button onClick={() => onEdit(tx)}>Edit</button> <button onClick={() => onDelete(tx.id)}>Delete</button>
           </li>
         ))}
     </ul>
