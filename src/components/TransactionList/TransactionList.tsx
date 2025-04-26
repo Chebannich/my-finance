@@ -1,4 +1,4 @@
-import type { Transaction } from "../../types";
+import type { Transaction } from '../../types';
 
 interface Props {
   transactions: Transaction[];
@@ -6,7 +6,7 @@ interface Props {
   onEdit: (transaction: Transaction) => void;
 }
 
-const TransactionList = ( { transactions, onDelete, onEdit}: Props) => {
+const TransactionList = ({ transactions, onDelete, onEdit }: Props) => {
   if (transactions.length === 0) {
     return <p>No transactions yet.</p>;
   }
@@ -17,11 +17,14 @@ const TransactionList = ( { transactions, onDelete, onEdit}: Props) => {
 
   return (
     <ul>
-      {sortedTransactions.map(tx => (
-          <li key={tx.id}>
-            [{new Date(tx.date).toLocaleDateString()}] {tx.description} - {tx.amount} € ({tx.category}, {tx.type}) <button onClick={() => onEdit(tx)}>Edit</button> <button onClick={() => onDelete(tx.id)}>Delete</button>
-          </li>
-        ))}
+      {sortedTransactions.map((tx) => (
+        <li key={tx.id}>
+          [{new Date(tx.date).toLocaleDateString()}] {tx.description} -{' '}
+          {tx.amount} € ({tx.category}, {tx.type}){' '}
+          <button onClick={() => onEdit(tx)}>Edit</button>{' '}
+          <button onClick={() => onDelete(tx.id)}>Delete</button>
+        </li>
+      ))}
     </ul>
   );
 };
